@@ -9,19 +9,19 @@ public class PlayerBall : MonoBehaviour
     public float speed;
     public Text countText;
     public Text winText;
-    public AudioSource aud;
-    private Rigidbody rb;
+    public AudioSource audio;
+    private Rigidbody rigb;
     private int count;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rigb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
         winText.text = "";
 
 
-        aud = GetComponent<AudioSource>();
+        audio = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -31,7 +31,7 @@ public class PlayerBall : MonoBehaviour
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
-        rb.AddForce(movement * speed);
+        rigb.AddForce(movement * speed);
     }
 
     void OnTriggerEnter(Collider other)
@@ -44,7 +44,7 @@ public class PlayerBall : MonoBehaviour
                 other.gameObject.SetActive(false);
                 count = count + 1;
                 SetCountText();
-                aud.Play();
+                audio.Play();
             }
 
         }

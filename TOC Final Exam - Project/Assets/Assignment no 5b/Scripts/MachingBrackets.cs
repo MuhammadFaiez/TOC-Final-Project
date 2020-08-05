@@ -18,7 +18,7 @@ public class MachingBrackets : MonoBehaviour
     //string finalString = "";
     //string RString = "";
     static string[] validandnotvalids = new string[100];
-    static public System.Random ran = new System.Random();
+    static public System.Random rand = new System.Random();
     public static Random random = new Random();
     private static System.Random newrandom = new System.Random();
 
@@ -27,14 +27,14 @@ public class MachingBrackets : MonoBehaviour
     {
         collecttible = GameObject.FindGameObjectWithTag("Pick Up");
         string balanced, notbalanced;
-        int balancedSpawned = 0;
-        int notbalancedSpawned = 0;
+        int balancedBracketSpawned = 0;
+        int notbalancedBracketSpawned = 0;
 
-        while (balancedSpawned < 12)
+        while (balancedBracketSpawned < 12)
         {
 
 
-            balanced = RandomString(ran.Next(9, 15));
+            balanced = RandomString(rand.Next(9, 15));
             if (IsBalanced(balanced))
             {
                 // validandnotvalids[i] = randomstring;
@@ -42,15 +42,15 @@ public class MachingBrackets : MonoBehaviour
                 GameObject newobject;
                 newobject = Instantiate(collecttible, position, Quaternion.identity);
                 newobject.GetComponent<Ui>().nameLable.text = balanced;
-                balancedSpawned++;
+                balancedBracketSpawned++;
 
             }
         }
-        while (notbalancedSpawned < 23)
+        while (notbalancedBracketSpawned < 23)
         {
 
 
-            notbalanced = RandomString(ran.Next(9, 15));
+            notbalanced = RandomString(rand.Next(9, 15));
             if (!IsBalanced(notbalanced))
             {
                 // validandnotvalids[i] = randomstring;
@@ -58,7 +58,7 @@ public class MachingBrackets : MonoBehaviour
                 GameObject newobject;
                 newobject = Instantiate(collecttible, position, Quaternion.identity);
                 newobject.GetComponent<Ui>().nameLable.text = notbalanced;
-                notbalancedSpawned++;
+                notbalancedBracketSpawned++;
 
             }
         }
