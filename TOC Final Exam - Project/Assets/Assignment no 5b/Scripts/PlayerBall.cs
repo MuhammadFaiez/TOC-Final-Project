@@ -50,9 +50,6 @@ public class PlayerBall : MonoBehaviour
         }
     }
 
-
-
-
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
@@ -62,8 +59,7 @@ public class PlayerBall : MonoBehaviour
 
             case 1:
                 winText.text = " 1 balanced bracket picked";
-               
-
+              
 
                 break;
 
@@ -117,34 +113,16 @@ public class PlayerBall : MonoBehaviour
     }
 
 
-
-
     static public bool CheckForBalanced(string PinnedString)
     {
-        /*******************************************************************
-         * The easiest way to check for balanced bracketing is to start    *
-         * counting left to right adding one for each opening bracket, '(' *
-         * and subtracting 1 for every closing bracket, ')'.  At the end   *
-         * the sum total should be zero and at no time should the count    *
-         * fall below zero.                                                *
-         *                                                                 *
-         * Implementation:  The bracket counting variable is an unsigned   *
-         * integer and we trap an overflow exception.  This happens if the *
-         * unsigned variable ever goes negative.  This allows us to abort  *
-         * at the very first imbalance rather than wasting time checking   *
-         * the rest of the characters in the string.                       *
-         *                                                                 *
-         * At the end all we have to do is check to see if the count       *
-         * is equal to zero for a "balanced" result.                       *
-         *                                                                 *
-         *******************************************************************/
+   
         const char LeftParenthesis = '(';
         const char RightParenthesis = ')';
         uint BracketCount = 0;
 
         try
         {
-            checked  // Turns on overflow checking.
+            checked 
             {
                 for (int Index = 0; Index < PinnedString.Length; Index++)
                 {
@@ -158,7 +136,7 @@ public class PlayerBall : MonoBehaviour
                             continue;
                         default:
                             continue;
-                    }  // end of switch()
+                    } 
 
                 }
             }
@@ -176,7 +154,7 @@ public class PlayerBall : MonoBehaviour
 
         return false;
 
-    }  // end of CheckForBalancedBracketing()
+    } 
 
 
 

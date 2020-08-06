@@ -7,16 +7,8 @@ using UnityEngine.UI;
 public class MachingBrackets : MonoBehaviour
 {
     GameObject collecttible;
-
     Vector3 position;
-
-    // Start is called before the first frame update
-    // Start is called before the first frame update
     private Text thisText;
-    //int j = 0;
-    //int RandomPalindrome = 0;
-    //string finalString = "";
-    //string RString = "";
     static string[] validandnotvalids = new string[100];
     static public System.Random rand = new System.Random();
     public static Random random = new Random();
@@ -32,12 +24,9 @@ public class MachingBrackets : MonoBehaviour
 
         while (balancedBracketSpawned < 12)
         {
-
-
             balanced = RandomString(rand.Next(9, 15));
             if (IsBalanced(balanced))
             {
-                // validandnotvalids[i] = randomstring;
                 position = new Vector3(Random.Range(-70, 86f), 8.0f, Random.Range(36, 120));
                 GameObject newobject;
                 newobject = Instantiate(collecttible, position, Quaternion.identity);
@@ -48,12 +37,9 @@ public class MachingBrackets : MonoBehaviour
         }
         while (notbalancedBracketSpawned < 23)
         {
-
-
             notbalanced = RandomString(rand.Next(9, 15));
             if (!IsBalanced(notbalanced))
-            {
-                // validandnotvalids[i] = randomstring;
+            {               
                 position = new Vector3(Random.Range(-70, 86f), 8.0f, Random.Range(36, 120));
                 GameObject newobject;
                 newobject = Instantiate(collecttible, position, Quaternion.identity);
@@ -65,8 +51,6 @@ public class MachingBrackets : MonoBehaviour
         collecttible.active = false;
     }
 
-
-    // Update is called once per frame
     void Update()
     {
 
@@ -91,42 +75,30 @@ public class MachingBrackets : MonoBehaviour
 
         try
         {
-            // Iterate through each character in the input string
             foreach (char c in input)
-            {
-                // check if the character is one of the 'opening' brackets
+            {            
                 if (bracketPairs.Keys.Contains(c))
-                {
-                    // if yes, push to stack
+                {                
                     brackets.Push(c);
                 }
-                else
-                    // check if the character is one of the 'closing' brackets
+                else               
                     if (bracketPairs.Values.Contains(c))
-                {
-                    // check if the closing bracket matches the 'latest' 'opening' bracket
+                {                  
                     if (c == bracketPairs[brackets.First()])
                     {
                         brackets.Pop();
                     }
-                    else
-                        // if not, its an unbalanced string
+                    else                    
                         return false;
                 }
-                else
-                    // continue looking
+                else                 
                     continue;
             }
         }
         catch
-        {
-            // an exception will be caught in case a closing bracket is found, 
-            // before any opening bracket.
-            // that implies, the string is not balanced. Return false
+        {          
             return false;
-        }
-
-        // Ensure all brackets are closed
+        }        
         return brackets.Count() == 0 ? true : false;
     }
 
